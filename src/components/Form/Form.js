@@ -15,19 +15,30 @@ const Form = () => {
     valueResetHandler: nameResetHandler,
   } = useInput(isNotEmpty);
 
+  const {
+    value: phone,
+    hasError: phoneHasError,
+    isValid: phoneIsValid,
+    valueChangeHandler: phoneChangeHandler,
+    valueBlurHandler: phoneBlurHandler,
+    valueResetHandler: phoneResetHandler,
+  } = useInput((value) => value.length >= 10);
+
   console.log(nameHasError);
 
   const nameInputClasses = nameHasError ? "input-box invalid" : "input-box";
+  const phoneInputClasses = phoneHasError ? "input-box invalid" : "input-box";
 
   let formIsValid = false;
-  if (nameIsValid) {
+  if (nameIsValid && phoneIsValid) {
     formIsValid = true;
   }
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(name);
+    console.log(name, phone);
     nameResetHandler();
+    phoneResetHandler();
   };
 
   return (
@@ -44,6 +55,19 @@ const Form = () => {
             onBlur: nameBlurHandler,
           }}
           error={nameHasError}
+        />
+
+        <Input
+          label="Phone Number"
+          class={phoneInputClasses}
+          input={{
+            value: phone,
+            type: "number",
+            id: "phone",
+            onChange: phoneChangeHandler,
+            onBlur: phoneBlurHandler,
+          }}
+          error={phoneHasError}
         />
         <Button type={"submit"} disabled={!formIsValid}>
           Add

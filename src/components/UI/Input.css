@@ -5,11 +5,10 @@
   display: block;
   font-weight: bold;
   font-size: 1.2rem;
-  margin-bottom: 1rem;
 }
 .input-box input {
   width: 100%;
-
+  margin: 1rem 0;
   border: 1px solid #240370;
 
   outline: none;
@@ -41,6 +40,6 @@
   background-color: #fbe8d2;
 }
 .invalid p {
-  margin-top: 1rem;
+  margin-bottom: 00.5rem;
   color: rgb(187, 19, 7);
 }
